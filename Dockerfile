@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.4
+
 FROM ubuntu:20.04
 
 ARG TARGETARCH
@@ -7,20 +9,8 @@ RUN set -eux; \
     apt-get -qq update; \
     apt-get -qq -y --no-install-recommends install \
         liblzo2-2 \
-        python3.8 \
-        libpython3.8 \
-        python3-venv \
         openjdk-11-jdk-headless; \
-    rm -rf /var/lib/apt/lists/*; \
-    python3 -m venv /opt/deephaven-venv; \
-    /opt/deephaven-venv/bin/pip install -q --no-cache-dir --upgrade pip setuptools
-
-COPY requirements.txt requirements.txt
-RUN set -eux; \
-    /opt/deephaven-venv/bin/pip install -q --no-cache-dir -r requirements.txt; \
-    rm requirements.txt
-
-# todo: need to install jpy and deephaven wheel
+    rm -rf /var/lib/apt/lists/*
 
 ADD https://github.com/deephaven/deephaven-core/releases/download/v0.13.0/server-jetty-0.13.0.tar .
 RUN set -eux; \
