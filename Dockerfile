@@ -19,9 +19,7 @@ RUN set -eux; \
     rm server-jetty-0.13.0.tar
 COPY image-bootstrap.properties image-bootstrap.properties 
 
-ENV LANG='en_US.UTF-8' \
-   LANGUAGE='en_US:en' \
-   LC_ALL='en_US.UTF-8' \
+ENV LANG='C.UTF-8' \
    JAVA_HOME=/usr/lib/jvm/java-11-openjdk-${TARGETARCH}
 
 VOLUME /data
