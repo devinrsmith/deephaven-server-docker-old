@@ -29,6 +29,7 @@ ENV LANG="C.UTF-8" \
 COPY --link --from=unpacked /opt/deephaven /opt/deephaven
 VOLUME /data
 VOLUME /cache
+EXPOSE 10000
 ENTRYPOINT [ "/opt/deephaven/server-jetty/bin/start", "image-bootstrap.properties" ]
 
 # -------------------------------------
