@@ -5,7 +5,7 @@ ARG UBUNTU_TAG="20.04"
 # -------------------------------------
 
 FROM ubuntu:${UBUNTU_TAG} as unpacked
-ARG DEEPHAVEN_VERSION="0.14.0"
+ARG DEEPHAVEN_VERSION
 ADD --link https://github.com/deephaven/deephaven-core/releases/download/v${DEEPHAVEN_VERSION}/server-jetty-${DEEPHAVEN_VERSION}.tar .
 RUN set -eux; \
     mkdir /opt/deephaven; \

@@ -24,15 +24,33 @@ variable "TAG" {
     default = "latest"
 }
 
+variable "DEEPHAVEN_VERSION" {
+    default = "0.14.0"
+}
+
+target "defaults" {
+    args = {
+        "DEEPHAVEN_VERSION" = "${DEEPHAVEN_VERSION}"
+    }
+}
+
 target "groovy" {
+    inherits = [ "defaults" ]
     context = "server/"
-    tags = [ "${REPO_PREFIX}deephaven-ubuntu-server-groovy:${TAG}" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-ubuntu-server-groovy:${TAG}",
+        "${REPO_PREFIX}deephaven-ubuntu-server-groovy:${DEEPHAVEN_VERSION}"
+    ]
     target = "groovy"
 }
 
 target "python" {
+    inherits = [ "defaults" ]
     context = "server/"
-    tags = [ "${REPO_PREFIX}deephaven-ubuntu-server-python:${TAG}" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-ubuntu-server-python:${TAG}",
+        "${REPO_PREFIX}deephaven-ubuntu-server-python:${DEEPHAVEN_VERSION}"
+    ]
     target = "python"
 }
 
