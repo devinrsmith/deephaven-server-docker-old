@@ -4,6 +4,7 @@ FROM ubuntu:20.04
 
 ARG TARGETARCH
 ARG DEBIAN_FRONTEND="noninteractive"
+ARG DEEPHAVEN_VERSION="0.14.0"
 
 RUN set -eux; \
     apt-get -qq update; \
@@ -12,11 +13,12 @@ RUN set -eux; \
         openjdk-11-jdk-headless; \
     rm -rf /var/lib/apt/lists/*
 
-ADD https://github.com/deephaven/deephaven-core/releases/download/v0.13.0/server-jetty-0.13.0.tar .
+ADD https://github.com/deephaven/deephaven-core/releases/download/v${DEEPHAVEN_VERSION}/server-jetty-${DEEPHAVEN_VERSION}.tar .
 RUN set -eux; \
     mkdir /opt/deephaven; \
-    tar -xf server-jetty-0.13.0.tar -C /opt/deephaven; \
-    rm server-jetty-0.13.0.tar
+    tar -xf server-jetty-${DEEPHAVEN_VERSION}.tar -C /opt/deephaven; \
+    rm server-jetty-${DEEPHAVEN_VERSION}.tar; \
+    ln -s /opt/deephaven/server-jetty-${DEEPHAVEN_VERSION} /opt/deephaven/server-jetty
 COPY image-bootstrap.properties image-bootstrap.properties 
 
 ENV LANG='C.UTF-8' \
@@ -25,4 +27,4 @@ ENV LANG='C.UTF-8' \
 VOLUME /data
 VOLUME /cache
 
-ENTRYPOINT [ "/opt/deephaven/server-jetty-0.13.0/bin/start", "image-bootstrap.properties" ]
+ENTRYPOINT [ "/opt/deephaven/server-jetty/bin/start", "image-bootstrap.properties" ]
