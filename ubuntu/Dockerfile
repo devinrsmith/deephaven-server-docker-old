@@ -52,9 +52,8 @@ RUN set -eux; \
     python${PYTHON_VERSION} -m venv /opt/deephaven/venv
 # TODO: add requirements.txt into .tar, or as separate release artifact?
 RUN --mount=type=bind,source=./python,target=./python \
-    --mount=type=cache,target=/root/.cache/pip \
     set -eux; \
-    /opt/deephaven/venv/bin/pip install -r python/requirements.txt; \
+    /opt/deephaven/venv/bin/pip install --no-cache-dir -r python/requirements.txt; \
     cp python/image-bootstrap.properties .
 ENV VIRTUAL_ENV="/opt/deephaven/venv" \
    PATH="/opt/deephaven/venv/bin:${PATH}"
