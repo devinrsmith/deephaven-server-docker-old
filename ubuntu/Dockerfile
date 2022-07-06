@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 
-ARG UBUNTU_TAG="20.04"
+ARG UBUNTU_TAG
 
 # -------------------------------------
 
@@ -17,7 +17,7 @@ RUN set -eux; \
 FROM ubuntu:${UBUNTU_TAG} as jetty
 ARG TARGETARCH
 ARG DEBIAN_FRONTEND="noninteractive"
-ARG OPENJDK_VERSION="11"
+ARG OPENJDK_VERSION
 RUN set -eux; \
     apt-get -qq update; \
     apt-get -qq -y --no-install-recommends install \
@@ -41,7 +41,7 @@ RUN --mount=type=bind,source=./groovy,target=./groovy set -eux; \
 # -------------------------------------
 
 FROM jetty as python
-ARG PYTHON_VERSION="3.8"
+ARG PYTHON_VERSION
 RUN set -eux; \
     apt-get -qq update; \
     apt-get -qq -y --no-install-recommends install \
