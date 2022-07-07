@@ -1,10 +1,17 @@
 # syntax=docker/dockerfile:1.4
 
 ARG UBUNTU_TAG
+ARG OPENJDK_VERSION
 
 # -------------------------------------
 
-FROM ubuntu:${UBUNTU_TAG} as unpacked
+# Using alias builder stage since we can't use ARG as part of COPY --from flags.
+# See https://github.com/docker/cli/issues/3356#issuecomment-957892224
+FROM eclipse-temurin:${OPENJDK_VERSION} AS java
+
+# -------------------------------------
+
+FROM ubuntu:${UBUNTU_TAG} as deephaven-app
 ARG DEEPHAVEN_VERSION
 ARG DEEPHAVEN_SHA256SUM
 ADD --link https://github.com/deephaven/deephaven-core/releases/download/v${DEEPHAVEN_VERSION}/server-jetty-${DEEPHAVEN_VERSION}.tar .
@@ -17,25 +24,24 @@ RUN set -eux; \
 # -------------------------------------
 
 FROM ubuntu:${UBUNTU_TAG} as jetty
-ARG TARGETARCH
 ARG DEBIAN_FRONTEND="noninteractive"
-ARG OPENJDK_VERSION
 RUN set -eux; \
     apt-get -qq update; \
     apt-get -qq -y --no-install-recommends install \
         liblzo2-2 \
         tzdata \
         ca-certificates \
-        locales \
-        openjdk-${OPENJDK_VERSION}-jdk-headless; \
+        locales; \
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen; \
     locale-gen en_US.UTF-8; \
     rm -rf /var/lib/apt/lists/*
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
     LC_ALL='en_US.UTF-8' \
-    JAVA_HOME=/usr/lib/jvm/java-${OPENJDK_VERSION}-openjdk-${TARGETARCH}
-COPY --link --from=unpacked /opt/deephaven /opt/deephaven
+    JAVA_HOME=/opt/java/openjdk \
+    DEEPHAVEN_HOME=/opt/deephaven
+COPY --link --from=java ${JAVA_HOME} ${JAVA_HOME}
+COPY --link --from=deephaven-app ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
 VOLUME /data
 VOLUME /cache
 EXPOSE 10000
