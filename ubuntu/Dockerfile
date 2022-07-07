@@ -24,10 +24,17 @@ RUN set -eux; \
     apt-get -qq update; \
     apt-get -qq -y --no-install-recommends install \
         liblzo2-2 \
+        tzdata \
+        ca-certificates \
+        locales \
         openjdk-${OPENJDK_VERSION}-jdk-headless; \
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen; \
+    locale-gen en_US.UTF-8; \
     rm -rf /var/lib/apt/lists/*
-ENV LANG="C.UTF-8" \
-   JAVA_HOME=/usr/lib/jvm/java-${OPENJDK_VERSION}-openjdk-${TARGETARCH}
+ENV LANG='en_US.UTF-8' \
+    LANGUAGE='en_US:en' \
+    LC_ALL='en_US.UTF-8' \
+    JAVA_HOME=/usr/lib/jvm/java-${OPENJDK_VERSION}-openjdk-${TARGETARCH}
 COPY --link --from=unpacked /opt/deephaven /opt/deephaven
 VOLUME /data
 VOLUME /cache
