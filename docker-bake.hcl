@@ -36,6 +36,7 @@ variable "TAG" {
     default = "latest"
 }
 
+# Note: when updating DEEPHAVEN_VERSION, we should update requirements.txt.
 variable "DEEPHAVEN_VERSION" {
     default = "0.14.0"
 }
@@ -50,7 +51,7 @@ target "groovy-11" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-groovy:${DEEPHAVEN_VERSION}-11"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11"
     ]
     target = "groovy"
     args = {
@@ -63,7 +64,7 @@ target "groovy-17" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-groovy:${DEEPHAVEN_VERSION}-17"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17"
     ]
     target = "groovy"
     args = {
@@ -76,7 +77,7 @@ target "python-11-38" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-python:${DEEPHAVEN_VERSION}-11-38"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11-38"
     ]
     target = "python"
     args = {
@@ -90,7 +91,7 @@ target "python-11-39" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-python:${DEEPHAVEN_VERSION}-11-39"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11-39"
     ]
     target = "python"
     args = {
@@ -104,7 +105,7 @@ target "python-11-310" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-python:${DEEPHAVEN_VERSION}-11-310"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11-310"
     ]
     target = "python"
     args = {
@@ -118,7 +119,7 @@ target "python-17-38" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-python:${DEEPHAVEN_VERSION}-17-38"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17-38"
     ]
     target = "python"
     args = {
@@ -132,7 +133,7 @@ target "python-17-39" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-python:${DEEPHAVEN_VERSION}-17-39"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17-39"
     ]
     target = "python"
     args = {
@@ -146,7 +147,7 @@ target "python-17-310" {
     inherits = [ "defaults" ]
     context = "ubuntu/"
     tags = [
-        "${REPO_PREFIX}deephaven-ubuntu-server-python:${DEEPHAVEN_VERSION}-17-310"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17-310"
     ]
     target = "python"
     args = {
