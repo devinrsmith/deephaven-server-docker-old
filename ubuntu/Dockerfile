@@ -23,7 +23,23 @@ RUN set -eux; \
 
 # -------------------------------------
 
-FROM ubuntu:${UBUNTU_TAG} as jetty
+FROM ubuntu:${UBUNTU_TAG} as groovy-config
+RUN --mount=type=bind,source=./groovy/image-bootstrap.properties,target=./groovy/image-bootstrap.properties \
+    set -eux; \
+    mkdir -p /opt/deephaven/config; \
+    cp groovy/image-bootstrap.properties /opt/deephaven/config/image-bootstrap.properties
+
+# -------------------------------------
+
+FROM ubuntu:${UBUNTU_TAG} as python-config
+RUN --mount=type=bind,source=./python/image-bootstrap.properties,target=./python/image-bootstrap.properties \
+    set -eux; \
+    mkdir -p /opt/deephaven/config; \
+    cp python/image-bootstrap.properties /opt/deephaven/config/image-bootstrap.properties
+
+# -------------------------------------
+
+FROM ubuntu:${UBUNTU_TAG} as base
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN set -eux; \
     apt-get -qq update; \
@@ -40,22 +56,11 @@ ENV LANG='en_US.UTF-8' \
     LC_ALL='en_US.UTF-8' \
     JAVA_HOME=/opt/java/openjdk \
     DEEPHAVEN_HOME=/opt/deephaven
-COPY --link --from=java ${JAVA_HOME} ${JAVA_HOME}
-COPY --link --from=deephaven-app ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
-VOLUME /data
-VOLUME /cache
-EXPOSE 10000
-ENTRYPOINT [ "/opt/deephaven/server-jetty/bin/start", "image-bootstrap.properties" ]
 
 # -------------------------------------
 
-FROM jetty as groovy
-RUN --mount=type=bind,source=./groovy,target=./groovy set -eux; \
-    cp groovy/image-bootstrap.properties .
-
-# -------------------------------------
-
-FROM jetty as python
+FROM base as python-base
+ARG DEBIAN_FRONTEND="noninteractive"
 ARG PYTHON_VERSION
 RUN set -eux; \
     apt-get -qq update; \
@@ -63,14 +68,35 @@ RUN set -eux; \
         libpython${PYTHON_VERSION} \
         python${PYTHON_VERSION} \
         python${PYTHON_VERSION}-venv; \
-    rm -rf /var/lib/apt/lists/*; \
-    python${PYTHON_VERSION} -m venv /opt/deephaven/venv
-# TODO: add requirements.txt into .tar, or as separate release artifact?
-RUN --mount=type=bind,source=./python,target=./python \
+    rm -rf /var/lib/apt/lists/*
+RUN --mount=type=bind,source=./python/requirements.txt,target=./python/requirements.txt \
     set -eux; \
-    /opt/deephaven/venv/bin/pip install --no-cache-dir -r python/requirements.txt; \
-    cp python/image-bootstrap.properties .
+    python${PYTHON_VERSION} -m venv /opt/deephaven/venv; \
+    /opt/deephaven/venv/bin/pip install --no-cache-dir -r python/requirements.txt
 ENV VIRTUAL_ENV="/opt/deephaven/venv" \
-   PATH="/opt/deephaven/venv/bin:${PATH}"
+    PATH="/opt/deephaven/venv/bin:${PATH}"
+# TODO: add requirements.txt into .tar, or as separate release artifact?
+
+# -------------------------------------
+
+FROM base as groovy
+COPY --link --from=java ${JAVA_HOME} ${JAVA_HOME}
+COPY --link --from=deephaven-app ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
+COPY --link --from=groovy-config ${DEEPHAVEN_HOME}/config ${DEEPHAVEN_HOME}/config
+VOLUME /data
+VOLUME /cache
+EXPOSE 10000
+ENTRYPOINT [ "/opt/deephaven/server-jetty/bin/start", "/opt/deephaven/config/image-bootstrap.properties" ]
+
+# -------------------------------------
+
+FROM python-base as python
+COPY --link --from=java ${JAVA_HOME} ${JAVA_HOME}
+COPY --link --from=deephaven-app ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
+COPY --link --from=python-config ${DEEPHAVEN_HOME}/config ${DEEPHAVEN_HOME}/config
+VOLUME /data
+VOLUME /cache
+EXPOSE 10000
+ENTRYPOINT [ "/opt/deephaven/server-jetty/bin/start", "/opt/deephaven/config/image-bootstrap.properties" ]
 
 # -------------------------------------
