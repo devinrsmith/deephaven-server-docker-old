@@ -1,4 +1,4 @@
-group "default" {
+group "ubuntu" {
     targets = [
         "groovy-11",
         "groovy-17",
@@ -28,9 +28,9 @@ group "generics" {
     ]
 }
 
-group "all" {
+group "default" {
     targets = [
-        "default",
+        "ubuntu",
         "generics"
     ]
 }
