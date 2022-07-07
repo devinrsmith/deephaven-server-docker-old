@@ -41,9 +41,14 @@ variable "DEEPHAVEN_VERSION" {
     default = "0.14.0"
 }
 
+variable "DEEPHAVEN_SHA256SUM" {
+    default = "d358b0f0945a7cd183f045a9fd72ff5c7dcb94e485c190f65b981ae65c4044ce"
+}
+
 target "defaults" {
     args = {
-        "DEEPHAVEN_VERSION" = "${DEEPHAVEN_VERSION}"
+        "DEEPHAVEN_VERSION" = "${DEEPHAVEN_VERSION}",
+        "DEEPHAVEN_SHA256SUM" = "${DEEPHAVEN_SHA256SUM}"
     }
 }
 
