@@ -46,7 +46,9 @@ group "generics" {
         "liberica-alpine-musl-17",
         "liberica-alpine-musl-11",
         "liberica-centos-17",
-        "liberica-centos-11"
+        "liberica-centos-11",
+        // "redhat-17",
+        // "redhat-11"
     ]
 }
 
@@ -659,3 +661,25 @@ target "liberica-centos-11" {
         "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-centos:11"
     }
 }
+
+// Note: redhat does not currently work with Deephaven - /cache directory (permissions?) issue.
+// target "redhat-17" {
+//     inherits = [ "generic-context" ]
+//     tags = [
+//         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-redhat",
+//         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-redhat-17"
+//     ]
+//     args = {
+//         "GENERIC_JAVA_BASE" = "registry.access.redhat.com/ubi8/openjdk-17-runtime:latest"
+//     }
+// }
+
+// target "redhat-11" {
+//     inherits = [ "generic-context" ]
+//     tags = [
+//         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-redhat-11"
+//     ]
+//     args = {
+//         "GENERIC_JAVA_BASE" = "registry.access.redhat.com/ubi8/openjdk-11-runtime:latest"
+//     }
+// }
