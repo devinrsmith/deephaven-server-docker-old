@@ -38,7 +38,15 @@ group "generics" {
         // "ibm-semeru-runtimes-17",
         // "ibm-semeru-runtimes-11",
         "sapmachine-17",
-        "sapmachine-11"
+        "sapmachine-11",
+        "liberica-debian-17",
+        "liberica-debian-11",
+        "liberica-alpine-17",
+        "liberica-alpine-11",
+        "liberica-alpine-musl-17",
+        "liberica-alpine-musl-11",
+        "liberica-centos-17",
+        "liberica-centos-11"
     ]
 }
 
@@ -565,5 +573,89 @@ target "sapmachine-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "sapmachine:11"
+    }
+}
+
+target "liberica-debian-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-debian",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-debian-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-debian:17"
+    }
+}
+
+target "liberica-debian-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-debian-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-debian:11"
+    }
+}
+
+target "liberica-alpine-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-alpine:17"
+    }
+}
+
+target "liberica-alpine-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-alpine:11"
+    }
+}
+
+target "liberica-alpine-musl-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-musl",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-musl-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-alpine-musl:17"
+    }
+}
+
+target "liberica-alpine-musl-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-musl-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-alpine-musl:11"
+    }
+}
+
+target "liberica-centos-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-centos",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-centos-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-centos:17"
+    }
+}
+
+target "liberica-centos-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-centos-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-centos:11"
     }
 }
