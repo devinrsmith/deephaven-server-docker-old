@@ -49,7 +49,7 @@ group "release" {
 }
 
 variable "REPO_PREFIX" {
-    default = "ghcr.io/devinrsmith/"
+    default = ""
 }
 
 variable "CACHE_PREFIX" {
