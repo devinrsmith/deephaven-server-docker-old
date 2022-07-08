@@ -303,7 +303,6 @@ target "generic-context" {
 target "eclipse-temurin-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-eclipse-temurin",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-eclipse-temurin-17"
     ]
     args = {
@@ -324,7 +323,6 @@ target "eclipse-temurin-11" {
 target "amazoncorretto-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-amazoncorretto",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-amazoncorretto-17"
     ]
     args = {
@@ -345,7 +343,6 @@ target "amazoncorretto-11" {
 target "zulu-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-17"
     ]
     args = {
@@ -366,7 +363,6 @@ target "zulu-11" {
 target "zulu-debian-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-debian",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-debian-17"
     ]
     args = {
@@ -387,7 +383,6 @@ target "zulu-debian-11" {
 target "zulu-centos-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-centos",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-centos-17"
     ]
     args = {
@@ -408,7 +403,6 @@ target "zulu-centos-11" {
 target "zulu-alpine-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-alpine",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-alpine-17"
     ]
     args = {
@@ -429,8 +423,6 @@ target "zulu-alpine-11" {
 target "graal-jdk-ol8-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal",
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-17",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-jdk-ol8-17"
     ]
     args = {
@@ -441,7 +433,6 @@ target "graal-jdk-ol8-17" {
 target "graal-jdk-ol8-11" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-11",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-jdk-ol8-11"
     ]
     args = {
@@ -472,9 +463,6 @@ target "graal-jdk-ol7-11" {
 target "microsoft-ubuntu-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft",
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-17",
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-ubuntu",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-ubuntu-17"
     ]
     args = {
@@ -485,7 +473,6 @@ target "microsoft-ubuntu-17" {
 target "microsoft-ubuntu-11" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-11",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-ubuntu-11"
     ]
     args = {
@@ -496,7 +483,6 @@ target "microsoft-ubuntu-11" {
 target "microsoft-mariner-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-mariner",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-mariner-17"
     ]
     args = {
@@ -517,7 +503,6 @@ target "microsoft-mariner-11" {
 target "microsoft-cbld-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-cbld",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-cbld-17"
     ]
     args = {
@@ -539,7 +524,6 @@ target "microsoft-cbld-11" {
 // target "ibm-semeru-runtimes-17" {
 //     inherits = [ "generic-context" ]
 //     tags = [
-//         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-ibm-semeru-runtimes",
 //         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-ibm-semeru-runtimes-17"
 //     ]
 //     args = {
@@ -560,7 +544,6 @@ target "microsoft-cbld-11" {
 target "sapmachine-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-sapmachine",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-sapmachine-17"
     ]
     args = {
@@ -581,7 +564,6 @@ target "sapmachine-11" {
 target "liberica-debian-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-debian",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-debian-17"
     ]
     args = {
@@ -602,7 +584,6 @@ target "liberica-debian-11" {
 target "liberica-alpine-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-17"
     ]
     args = {
@@ -623,7 +604,6 @@ target "liberica-alpine-11" {
 target "liberica-alpine-musl-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-musl",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-musl-17"
     ]
     args = {
@@ -644,7 +624,6 @@ target "liberica-alpine-musl-11" {
 target "liberica-centos-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-centos",
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-centos-17"
     ]
     args = {
@@ -666,7 +645,6 @@ target "liberica-centos-11" {
 // target "redhat-17" {
 //     inherits = [ "generic-context" ]
 //     tags = [
-//         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-redhat",
 //         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-redhat-17"
 //     ]
 //     args = {
