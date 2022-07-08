@@ -2,12 +2,16 @@ group "default" {
     targets = [
         "groovy-11",
         "groovy-17",
+        "groovy-18",
         "python-11-38",
         "python-11-39",
         "python-11-310",
         "python-17-38",
         "python-17-39",
-        "python-17-310"
+        "python-17-310",
+        "python-18-38",
+        "python-18-39",
+        "python-18-310"
     ]
 }
 
@@ -74,12 +78,16 @@ group "release" {
     targets = [
         "groovy-11-release",
         "groovy-17-release",
+        "groovy-18-release",
         "python-11-38-release",
         "python-11-39-release",
         "python-11-310-release",
         "python-17-38-release",
         "python-17-39-release",
-        "python-17-310-release"
+        "python-17-310-release",
+        "python-18-38-release",
+        "python-18-39-release",
+        "python-18-310-release"
     ]
 }
 
@@ -170,6 +178,18 @@ target "groovy-17" {
     }
 }
 
+target "groovy-18" {
+    inherits = [ "ubuntu-context", "groovy-contexts" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18"
+    ]
+    target = "groovy"
+    args = {
+        "UBUNTU_TAG" = "22.04"
+        "OPENJDK_VERSION" = "18"
+    }
+}
+
 target "python-11-38" {
     inherits = [ "ubuntu-context", "python-contexts" ]
     tags = [
@@ -248,6 +268,45 @@ target "python-17-310" {
     }
 }
 
+target "python-18-38" {
+    inherits = [ "ubuntu-context", "python-contexts" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18-38"
+    ]
+    target = "python"
+    args = {
+        "UBUNTU_TAG" = "20.04"
+        "OPENJDK_VERSION" = "18"
+        "PYTHON_VERSION" = "3.8"
+    }
+}
+
+target "python-18-39" {
+    inherits = [ "ubuntu-context", "python-contexts" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18-39"
+    ]
+    target = "python"
+    args = {
+        "UBUNTU_TAG" = "20.04"
+        "OPENJDK_VERSION" = "18"
+        "PYTHON_VERSION" = "3.9"
+    }
+}
+
+target "python-18-310" {
+    inherits = [ "ubuntu-context", "python-contexts" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18-310"
+    ]
+    target = "python"
+    args = {
+        "UBUNTU_TAG" = "22.04"
+        "OPENJDK_VERSION" = "18"
+        "PYTHON_VERSION" = "3.10"
+    }
+}
+
 target "groovy-11-release" {
     inherits = [ "groovy-11" ]
     cache-from = [ "type=gha,scope=${CACHE_PREFIX}groovy-11" ]
@@ -259,6 +318,13 @@ target "groovy-17-release" {
     inherits = [ "groovy-17" ]
     cache-from = [ "type=gha,scope=${CACHE_PREFIX}groovy-17" ]
     cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}groovy-17" ]
+    platforms = [ "linux/amd64", "linux/arm64" ]
+}
+
+target "groovy-18-release" {
+    inherits = [ "groovy-18" ]
+    cache-from = [ "type=gha,scope=${CACHE_PREFIX}groovy-18" ]
+    cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}groovy-18" ]
     platforms = [ "linux/amd64", "linux/arm64" ]
 }
 
@@ -301,6 +367,27 @@ target "python-17-310-release" {
     inherits = [ "python-17-310" ]
     cache-from = [ "type=gha,scope=${CACHE_PREFIX}python-17-310" ]
     cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}python-17-310" ]
+    platforms = [ "linux/amd64", "linux/arm64" ]
+}
+
+target "python-18-38-release" {
+    inherits = [ "python-18-38" ]
+    cache-from = [ "type=gha,scope=${CACHE_PREFIX}python-18-38" ]
+    cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}python-18-38" ]
+    platforms = [ "linux/amd64", "linux/arm64" ]
+}
+
+target "python-18-39-release" {
+    inherits = [ "python-18-39" ]
+    cache-from = [ "type=gha,scope=${CACHE_PREFIX}python-18-39" ]
+    cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}python-18-39" ]
+    platforms = [ "linux/amd64", "linux/arm64" ]
+}
+
+target "python-18-310-release" {
+    inherits = [ "python-18-310" ]
+    cache-from = [ "type=gha,scope=${CACHE_PREFIX}python-18-310" ]
+    cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}python-18-310" ]
     platforms = [ "linux/amd64", "linux/arm64" ]
 }
 
