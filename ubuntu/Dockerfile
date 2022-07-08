@@ -5,15 +5,21 @@ ARG OPENJDK_VERSION
 ARG OPENJDK_VENDOR
 
 # -------------------------------------
-# The following OpenJDK images have standardized on a self-contained /opt/java/openjdk,
-# making it really easy to mixin java with COPY --from.
+# The following OpenJDK images have a self-contained JDK making it really easy to mixin.
 #
 # Note: using alias builder stage since we can't use ARG as part of COPY --from flags.
 # See https://github.com/docker/cli/issues/3356#issuecomment-957892224
 FROM eclipse-temurin:${OPENJDK_VERSION} as eclipse-temurin
+# Already has /opt/java/openjdk
 
 # Note: ibm-semeru-runtimes does not currently work with Deephaven - hotspot-impl crashes.
 FROM ibm-semeru-runtimes:open-${OPENJDK_VERSION}-jdk as ibm-semeru-runtimes
+# Already has /opt/java/openjdk
+
+FROM mcr.microsoft.com/openjdk/jdk:${OPENJDK_VERSION}-ubuntu as microsoft-openjdk
+RUN set -eux; \
+    mkdir -p /opt/java; \
+    mv $JAVA_HOME /opt/java/openjdk
 
 FROM ${OPENJDK_VENDOR} as openjdk
 

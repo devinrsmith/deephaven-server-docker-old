@@ -21,6 +21,12 @@ group "generics" {
         "graal-jdk-ol8-11",
         "graal-jdk-ol7-17",
         "graal-jdk-ol7-11",
+        "microsoft-ubuntu-17",
+        "microsoft-ubuntu-11",
+        "microsoft-mariner-17",
+        "microsoft-mariner-11",
+        "microsoft-cbld-17",
+        "microsoft-cbld-11",
         // "ibm-semeru-runtimes-17",
         // "ibm-semeru-runtimes-11",
         "sapmachine-17",
@@ -358,6 +364,72 @@ target "graal-jdk-ol7-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "ghcr.io/graalvm/jdk:ol7-java11"
+    }
+}
+
+target "microsoft-ubuntu-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-17",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-ubuntu",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-ubuntu-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "mcr.microsoft.com/openjdk/jdk:17-ubuntu"
+    }
+}
+
+target "microsoft-ubuntu-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-11",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-ubuntu-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "mcr.microsoft.com/openjdk/jdk:11-ubuntu"
+    }
+}
+
+target "microsoft-mariner-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-mariner",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-mariner-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "mcr.microsoft.com/openjdk/jdk:17-mariner"
+    }
+}
+
+target "microsoft-mariner-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-mariner-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "mcr.microsoft.com/openjdk/jdk:11-mariner"
+    }
+}
+
+target "microsoft-cbld-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-cbld",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-cbld-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "mcr.microsoft.com/openjdk/jdk:17-cbld"
+    }
+}
+
+target "microsoft-cbld-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-microsoft-cbld-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "mcr.microsoft.com/openjdk/jdk:11-cbld"
     }
 }
 
