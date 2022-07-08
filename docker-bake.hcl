@@ -17,6 +17,14 @@ group "generics" {
         "eclipse-temurin-11",
         "amazoncorretto-17",
         "amazoncorretto-11",
+        "zulu-17",
+        "zulu-11",
+        "zulu-debian-17",
+        "zulu-debian-11",
+        "zulu-centos-17",
+        "zulu-centos-11",
+        "zulu-alpine-17",
+        "zulu-alpine-11",
         "graal-jdk-ol8-17",
         "graal-jdk-ol8-11",
         "graal-jdk-ol7-17",
@@ -321,6 +329,90 @@ target "amazoncorretto-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "amazoncorretto:11"
+    }
+}
+
+target "zulu-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk:17"
+    }
+}
+
+target "zulu-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk:11"
+    }
+}
+
+target "zulu-debian-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-debian",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-debian-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-debian:17"
+    }
+}
+
+target "zulu-debian-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-debian-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-debian:11"
+    }
+}
+
+target "zulu-centos-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-centos",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-centos-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-centos:17"
+    }
+}
+
+target "zulu-centos-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-centos-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-centos:11"
+    }
+}
+
+target "zulu-alpine-17" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-alpine",
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-alpine-17"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-alpine:17"
+    }
+}
+
+target "zulu-alpine-11" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-alpine-11"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-alpine:11"
     }
 }
 
