@@ -13,16 +13,22 @@ group "default" {
 
 group "generics" {
     targets = [
+        "eclipse-temurin-18",
         "eclipse-temurin-17",
         "eclipse-temurin-11",
+        "amazoncorretto-18",
         "amazoncorretto-17",
         "amazoncorretto-11",
+        "zulu-18",
         "zulu-17",
         "zulu-11",
+        "zulu-debian-18",
         "zulu-debian-17",
         "zulu-debian-11",
+        "zulu-centos-18",
         "zulu-centos-17",
         "zulu-centos-11",
+        "zulu-alpine-18",
         "zulu-alpine-17",
         "zulu-alpine-11",
         "graal-ol8-17",
@@ -37,14 +43,19 @@ group "generics" {
         "microsoft-cbld-11",
         // "ibm-semeru-runtimes-17",
         // "ibm-semeru-runtimes-11",
+        "sapmachine-18",
         "sapmachine-17",
         "sapmachine-11",
+        "liberica-debian-18",
         "liberica-debian-17",
         "liberica-debian-11",
+        "liberica-alpine-18",
         "liberica-alpine-17",
         "liberica-alpine-11",
+        "liberica-alpine-musl-18",
         "liberica-alpine-musl-17",
         "liberica-alpine-musl-11",
+        "liberica-centos-18",
         "liberica-centos-17",
         "liberica-centos-11",
         // "redhat-17",
@@ -300,6 +311,17 @@ target "generic-context" {
     context = "generic/"
 }
 
+
+target "eclipse-temurin-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-eclipse-temurin-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "eclipse-temurin:18"
+    }
+}
+
 target "eclipse-temurin-17" {
     inherits = [ "generic-context" ]
     tags = [
@@ -317,6 +339,16 @@ target "eclipse-temurin-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "eclipse-temurin:11"
+    }
+}
+
+target "amazoncorretto-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-amazoncorretto-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "amazoncorretto:18"
     }
 }
 
@@ -340,6 +372,16 @@ target "amazoncorretto-11" {
     }
 }
 
+target "zulu-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk:18"
+    }
+}
+
 target "zulu-17" {
     inherits = [ "generic-context" ]
     tags = [
@@ -357,6 +399,16 @@ target "zulu-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "azul/zulu-openjdk:11"
+    }
+}
+
+target "zulu-debian-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-debian-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-debian:18"
     }
 }
 
@@ -380,6 +432,16 @@ target "zulu-debian-11" {
     }
 }
 
+target "zulu-centos-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-centos-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-centos:18"
+    }
+}
+
 target "zulu-centos-17" {
     inherits = [ "generic-context" ]
     tags = [
@@ -397,6 +459,16 @@ target "zulu-centos-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-centos:11"
+    }
+}
+
+target "zulu-alpine-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-zulu-alpine-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "azul/zulu-openjdk-alpine:18"
     }
 }
 
@@ -541,6 +613,16 @@ target "microsoft-cbld-11" {
 //     }
 // }
 
+target "sapmachine-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-sapmachine-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "sapmachine:18"
+    }
+}
+
 target "sapmachine-17" {
     inherits = [ "generic-context" ]
     tags = [
@@ -558,6 +640,16 @@ target "sapmachine-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "sapmachine:11"
+    }
+}
+
+target "liberica-debian-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-debian-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-debian:18"
     }
 }
 
@@ -581,6 +673,16 @@ target "liberica-debian-11" {
     }
 }
 
+target "liberica-alpine-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-alpine:18"
+    }
+}
+
 target "liberica-alpine-17" {
     inherits = [ "generic-context" ]
     tags = [
@@ -601,6 +703,16 @@ target "liberica-alpine-11" {
     }
 }
 
+target "liberica-alpine-musl-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-alpine-musl-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-alpine-musl:18"
+    }
+}
+
 target "liberica-alpine-musl-17" {
     inherits = [ "generic-context" ]
     tags = [
@@ -618,6 +730,16 @@ target "liberica-alpine-musl-11" {
     ]
     args = {
         "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-alpine-musl:11"
+    }
+}
+
+target "liberica-centos-18" {
+    inherits = [ "generic-context" ]
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-liberica-centos-18"
+    ]
+    args = {
+        "GENERIC_JAVA_BASE" = "bellsoft/liberica-openjdk-centos:18"
     }
 }
 
