@@ -141,6 +141,7 @@ target "python-config" {
 }
 
 target "groovy-contexts" {
+    inherits = [ "ubuntu-context" ]
     contexts = {
         deephaven-app = "target:deephaven-app"
         groovy-config = "target:groovy-config"
@@ -148,6 +149,7 @@ target "groovy-contexts" {
 }
 
 target "python-contexts" {
+    inherits = [ "ubuntu-context" ]
     contexts = {
         deephaven-app = "target:deephaven-app"
         python-config = "target:python-config"
@@ -155,7 +157,7 @@ target "python-contexts" {
 }
 
 target "groovy-11" {
-    inherits = [ "ubuntu-context", "groovy-contexts" ]
+    inherits = [ "groovy-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11"
     ]
@@ -167,7 +169,7 @@ target "groovy-11" {
 }
 
 target "groovy-17" {
-    inherits = [ "ubuntu-context", "groovy-contexts" ]
+    inherits = [ "groovy-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17"
     ]
@@ -179,7 +181,7 @@ target "groovy-17" {
 }
 
 target "groovy-18" {
-    inherits = [ "ubuntu-context", "groovy-contexts" ]
+    inherits = [ "groovy-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18"
     ]
@@ -191,7 +193,7 @@ target "groovy-18" {
 }
 
 target "python-11-38" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11-38"
     ]
@@ -204,7 +206,7 @@ target "python-11-38" {
 }
 
 target "python-11-39" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11-39"
     ]
@@ -217,7 +219,7 @@ target "python-11-39" {
 }
 
 target "python-11-310" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-11-310"
     ]
@@ -230,7 +232,7 @@ target "python-11-310" {
 }
 
 target "python-17-38" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17-38"
     ]
@@ -243,7 +245,7 @@ target "python-17-38" {
 }
 
 target "python-17-39" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17-39"
     ]
@@ -256,7 +258,7 @@ target "python-17-39" {
 }
 
 target "python-17-310" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-17-310"
     ]
@@ -269,7 +271,7 @@ target "python-17-310" {
 }
 
 target "python-18-38" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18-38"
     ]
@@ -282,7 +284,7 @@ target "python-18-38" {
 }
 
 target "python-18-39" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18-39"
     ]
@@ -295,7 +297,7 @@ target "python-18-39" {
 }
 
 target "python-18-310" {
-    inherits = [ "ubuntu-context", "python-contexts" ]
+    inherits = [ "python-contexts" ]
     tags = [
         "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-18-310"
     ]
