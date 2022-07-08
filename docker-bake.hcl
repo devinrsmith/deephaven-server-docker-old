@@ -25,10 +25,10 @@ group "generics" {
         "zulu-centos-11",
         "zulu-alpine-17",
         "zulu-alpine-11",
-        "graal-jdk-ol8-17",
-        "graal-jdk-ol8-11",
-        "graal-jdk-ol7-17",
-        "graal-jdk-ol7-11",
+        "graal-ol8-17",
+        "graal-ol8-11",
+        "graal-ol7-17",
+        "graal-ol7-11",
         "microsoft-ubuntu-17",
         "microsoft-ubuntu-11",
         "microsoft-mariner-17",
@@ -420,40 +420,40 @@ target "zulu-alpine-11" {
     }
 }
 
-target "graal-jdk-ol8-17" {
+target "graal-ol8-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-jdk-ol8-17"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-ol8-17"
     ]
     args = {
         "GENERIC_JAVA_BASE" = "ghcr.io/graalvm/jdk:ol8-java17"
     }
 }
 
-target "graal-jdk-ol8-11" {
+target "graal-ol8-11" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-jdk-ol8-11"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-ol8-11"
     ]
     args = {
         "GENERIC_JAVA_BASE" = "ghcr.io/graalvm/jdk:ol8-java11"
     }
 }
 
-target "graal-jdk-ol7-17" {
+target "graal-ol7-17" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-jdk-ol7-17"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-ol7-17"
     ]
     args = {
         "GENERIC_JAVA_BASE" = "ghcr.io/graalvm/jdk:ol7-java17"
     }
 }
 
-target "graal-jdk-ol7-11" {
+target "graal-ol7-11" {
     inherits = [ "generic-context" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-jdk-ol7-11"
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-graal-ol7-11"
     ]
     args = {
         "GENERIC_JAVA_BASE" = "ghcr.io/graalvm/jdk:ol7-java11"
