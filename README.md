@@ -8,12 +8,16 @@ The following images are currently being produced:
 
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-11`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-17`
+* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-11-38`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-11-39`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-11-310`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-17-38`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-17-39`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-17-310`
+* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18-38`
+* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18-39`
+* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18-310`
 
 The tag format is `<Deephaven version>-<JDK version>(-<Python version>)`.
 
