@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 
-FROM busybox as deephaven-app
+FROM busybox as bb
 ARG DEEPHAVEN_VERSION
 ARG DEEPHAVEN_SHA256SUM
 ADD --link https://github.com/deephaven/deephaven-core/releases/download/v${DEEPHAVEN_VERSION}/server-jetty-${DEEPHAVEN_VERSION}.tar .
@@ -9,6 +9,9 @@ RUN set -eux; \
     mkdir -p /opt/deephaven; \
     tar -xf server-jetty-${DEEPHAVEN_VERSION}.tar -C /opt/deephaven; \
     ln -s /opt/deephaven/server-jetty-${DEEPHAVEN_VERSION} /opt/deephaven/server-jetty
+
+FROM scratch as deephaven-scratch
+COPY --link --from=bb /opt/deephaven /opt/deephaven
 
 FROM scratch as groovy-config
 COPY --link groovy/ /opt/deephaven/config/
