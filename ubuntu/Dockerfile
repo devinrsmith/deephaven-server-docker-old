@@ -67,7 +67,7 @@ ENV VIRTUAL_ENV="/opt/deephaven/venv" \
 
 FROM base as groovy
 COPY --link --from=openjdk ${JAVA_HOME} ${JAVA_HOME}
-COPY --link --from=deephaven-app ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
+COPY --link --from=deephaven-scratch ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
 COPY --link --from=groovy-config ${DEEPHAVEN_HOME}/config ${DEEPHAVEN_HOME}/config
 VOLUME /data
 VOLUME /cache
@@ -78,7 +78,7 @@ ENTRYPOINT [ "/opt/deephaven/server-jetty/bin/start", "/opt/deephaven/config/ima
 
 FROM python-base as python
 COPY --link --from=openjdk ${JAVA_HOME} ${JAVA_HOME}
-COPY --link --from=deephaven-app ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
+COPY --link --from=deephaven-scratch ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
 COPY --link --from=python-config ${DEEPHAVEN_HOME}/config ${DEEPHAVEN_HOME}/config
 VOLUME /data
 VOLUME /cache

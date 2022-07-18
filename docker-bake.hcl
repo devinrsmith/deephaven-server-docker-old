@@ -1,5 +1,6 @@
 group "default" {
     targets = [
+        "deephaven-scratch",
         "groovy-11",
         "groovy-17",
         "groovy-18",
@@ -76,6 +77,7 @@ group "all" {
 
 group "release" {
     targets = [
+        "deephaven-scratch-release",
         "groovy-11-release",
         "groovy-17-release",
         "groovy-18-release",
@@ -121,9 +123,12 @@ target "ubuntu-context" {
     }
 }
 
-target "deephaven-app" {
+target "deephaven-scratch" {
     context = "deephaven-app/"
-    target = "deephaven-app"
+    tags = [
+        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-scratch"
+    ]
+    target = "deephaven-scratch"
     args = {
         "DEEPHAVEN_VERSION" = "${DEEPHAVEN_VERSION}"
         "DEEPHAVEN_SHA256SUM" = "${DEEPHAVEN_SHA256SUM}"
@@ -143,7 +148,7 @@ target "python-config" {
 target "groovy-contexts" {
     inherits = [ "ubuntu-context" ]
     contexts = {
-        deephaven-app = "target:deephaven-app"
+        deephaven-scratch = "target:deephaven-scratch"
         groovy-config = "target:groovy-config"
     }
 }
@@ -151,7 +156,7 @@ target "groovy-contexts" {
 target "python-contexts" {
     inherits = [ "ubuntu-context" ]
     contexts = {
-        deephaven-app = "target:deephaven-app"
+        deephaven-scratch = "target:deephaven-scratch"
         python-config = "target:python-config"
     }
 }
@@ -307,6 +312,14 @@ target "python-18-310" {
         "OPENJDK_VERSION" = "18"
         "PYTHON_VERSION" = "3.10"
     }
+}
+
+target "deephaven-scratch-release" {
+    inherits = [ "deephaven-scratch" ]
+    cache-from = [ "type=gha,scope=${CACHE_PREFIX}deephaven-scratch" ]
+    cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}deephaven-scratch" ]
+    # Note: our untarred application is "platformless", but I don't think there is a good way to express that notion wrt docker images
+    platforms = [ "linux/amd64", "linux/arm64" ]
 }
 
 target "groovy-11-release" {

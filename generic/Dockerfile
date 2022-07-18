@@ -3,7 +3,7 @@
 ARG GENERIC_JAVA_BASE
 FROM $GENERIC_JAVA_BASE
 ENV DEEPHAVEN_HOME=/opt/deephaven
-COPY --link --from=deephaven-app ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
+COPY --link --from=deephaven-scratch ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
 COPY --link --from=groovy-config ${DEEPHAVEN_HOME}/config ${DEEPHAVEN_HOME}/config
 VOLUME /data
 VOLUME /cache
