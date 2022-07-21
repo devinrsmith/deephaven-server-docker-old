@@ -4,7 +4,7 @@ This repository produces [Deephaven](https://deephaven.io/) server images with t
 
 ## Images
 
-The following images are currently being produced:
+The following server images are currently being produced:
 
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-11`
 * `ghcr.io/devinrsmith/deephaven-server:0.14.0-17`
@@ -32,6 +32,16 @@ Both the Intel and M1 architectures are supported with the Linux images.
 ### Windows
 
 The Linux images can be used with the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/). Windows native images are not currently being produced, but may be produced in the future.
+
+### Scratch
+
+A "scratch" data image is also being produced, `ghcr.io/devinrsmith/deephaven-server:0.14.0-scratch`.
+It contains just the application bits (no OS) unpackaged into `/opt/deephaven/`.
+This is useful for third-parties that want to mix-in the Deephaven application with their own Dockerfiles:
+
+```Dockerfile
+COPY --link --from=ghcr.io/devinrsmith/deephaven-server:0.14.0-scratch /opt/deephaven /opt/deephaven
+```
 
 ## Build
 
