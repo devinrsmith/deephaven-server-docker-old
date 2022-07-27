@@ -96,7 +96,7 @@ target "server-python" {
 target "server-scratch-release" {
     inherits = [ "server-scratch" ]
     tags = [
-        "${REPO_PREFIX}deephaven-server:${DEEPHAVEN_VERSION}-scratch"
+        "${REPO_PREFIX}${IMAGE_NAME}:${DEEPHAVEN_VERSION}-scratch"
     ]
     cache-from = [ "type=gha,scope=${CACHE_PREFIX}scratch" ]
     cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}scratch" ]
