@@ -70,6 +70,9 @@ variable "DEEPHAVEN_SHA256SUM" {
 
 target "server-scratch" {
     context = "server-scratch/"
+    tags = [
+        "${REPO_PREFIX}${IMAGE_NAME}:${DEEPHAVEN_VERSION}-scratch"
+    ]
     target = "server-scratch"
     args = {
         "DEEPHAVEN_VERSION" = "${DEEPHAVEN_VERSION}"
@@ -95,9 +98,6 @@ target "server-python" {
 
 target "server-scratch-release" {
     inherits = [ "server-scratch" ]
-    tags = [
-        "${REPO_PREFIX}${IMAGE_NAME}:${DEEPHAVEN_VERSION}-scratch"
-    ]
     cache-from = [ "type=gha,scope=${CACHE_PREFIX}scratch" ]
     cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}scratch" ]
     # Note: our untarred application is "platformless", but I don't think there is a good way to express that notion wrt docker images
