@@ -1,29 +1,31 @@
 # deephaven-server-docker
 
-This repository produces [Deephaven](https://deephaven.io/) server images with the [deephaven-core releases](https://github.com/deephaven/deephaven-core/releases).
+This repository produces [Deephaven](https://deephaven.io/) server Docker images with the [deephaven-core releases](https://github.com/deephaven/deephaven-core/releases).
+
+## Quickstart
+
+To get started quickly, simply run:
+
+```bash
+docker run \
+    --rm \
+    --name deephaven \
+    -p 10000:10000 \
+    ghcr.io/deephaven/server:0.14.0-python
+```
+
+This will start the server, and the web UI will be available at [http://localhost:10000](http://localhost:10000).
 
 ## Images
 
 The following server images are currently being produced:
 
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-11`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-17`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-11-38`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-11-39`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-11-310`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-17-38`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-17-39`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-17-310`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18-38`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18-39`
-* `ghcr.io/devinrsmith/deephaven-server:0.14.0-18-310`
-
-The tag format is `<Deephaven version>-<JDK version>(-<Python version>)`.
+* `ghcr.io/deephaven/server:0.14.0-groovy`
+* `ghcr.io/deephaven/server:0.14.0-python`
 
 ### Linux
 
-Images are produced for the platforms `linux/amd64` and `linux/arm64`. The images are based off of the [ubuntu](https://hub.docker.com/_/ubuntu) Docker image. Depending on the software stack, either `ubuntu:20.04` or `ubuntu:22.04` is used.
+Images are produced for the `linux/amd64` and `linux/arm64` platforms. The images are based off of the [ubuntu](https://hub.docker.com/_/ubuntu) Docker image.
 
 ### Mac
 
@@ -35,13 +37,15 @@ The Linux images can be used with the [Windows Subsystem for Linux](https://docs
 
 ### Scratch
 
-A "scratch" data image is also being produced, `ghcr.io/devinrsmith/deephaven-server:0.14.0-scratch`.
+A "scratch" image is also being produced, `ghcr.io/deephaven/server:0.14.0-scratch`.
 It contains just the application bits (no OS) unpackaged into `/opt/deephaven/`.
-This is useful for third-parties that want to mix-in the Deephaven application with their own Dockerfiles:
+This is useful for third-parties that want to quickly mix-in the Deephaven application with their own Dockerfiles:
 
 ```Dockerfile
-COPY --link --from=ghcr.io/devinrsmith/deephaven-server:0.14.0-scratch /opt/deephaven /opt/deephaven
+COPY --link --from=ghcr.io/deephaven/server:0.14.0-scratch /opt/deephaven /opt/deephaven
 ```
+
+In this mode, users are responsible for providing their own JVM (and Python virtual environment if applicable).
 
 ## Build
 
@@ -62,3 +66,10 @@ docker buildx bake python-11-310
 ```
 
 See [docker-bake.hcl](docker-bake.hcl) for parameterization options.
+
+
+## Resources
+
+* [Issues](https://github.com/deephaven/deephaven-server-docker/issues)
+* [Deephaven Community Slack](https://deephaven.io/slack)
+* [Deephaven Documentation](https://deephaven.io/core/docs/)
