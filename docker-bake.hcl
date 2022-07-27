@@ -8,8 +8,8 @@ group "default" {
 group "release" {
     targets = [
         "server-scratch-release",
-        // "server-groovy-release",
-        // "server-python-release"
+        "server-groovy-release",
+        "server-python-release"
     ]
 }
 
