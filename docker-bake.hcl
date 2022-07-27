@@ -100,8 +100,8 @@ target "server-scratch-release" {
     inherits = [ "server-scratch" ]
     cache-from = [ "type=gha,scope=${CACHE_PREFIX}scratch" ]
     cache-to = [ "type=gha,mode=max,scope=${CACHE_PREFIX}scratch" ]
-    # Note: our untarred application is "platformless", but I don't think there is a good way to express that notion wrt docker images
-    platforms = [ "linux/amd64", "linux/arm64" ]
+    # We'll only produce amd64, as the contents are the same as arm64
+    platforms = [ "linux/amd64" ]
 }
 
 target "server-groovy-release" {

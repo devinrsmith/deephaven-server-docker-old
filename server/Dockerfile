@@ -50,9 +50,13 @@ ENV VIRTUAL_ENV="${DEEPHAVEN_HOME}/venv" \
 
 # -------------------------------------
 
+FROM --platform=linux/amd64 server-scratch as server-scratch-amd64
+
+# -------------------------------------
+
 FROM base as groovy
 COPY --link --from=openjdk ${JAVA_HOME} ${JAVA_HOME}
-COPY --link --from=server-scratch ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
+COPY --link --from=server-scratch-amd64 ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
 COPY --link groovy/image-bootstrap.properties ${DEEPHAVEN_HOME}/config/image-bootstrap.properties
 VOLUME /data
 VOLUME /cache
@@ -63,7 +67,7 @@ ENTRYPOINT ["/opt/deephaven/server-jetty/bin/start", "/opt/deephaven/config/imag
 
 FROM python-base as python
 COPY --link --from=openjdk ${JAVA_HOME} ${JAVA_HOME}
-COPY --link --from=server-scratch ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
+COPY --link --from=server-scratch-amd64 ${DEEPHAVEN_HOME} ${DEEPHAVEN_HOME}
 COPY --link python/image-bootstrap.properties ${DEEPHAVEN_HOME}/config/image-bootstrap.properties
 VOLUME /data
 VOLUME /cache
